@@ -4,3 +4,5 @@ docker login --username=amitmindstix
 docker build -t amitmindstix/spring-boot-api-example .
 docker tag <46f89848bdeb> amitmindstix/spring-boot-api-example:v1
 docker push amitmindstix/spring-boot-api-example
+
+https://www.spinnaker.io/guides/tutorials/codelabs/kubernetes-source-to-prod/
