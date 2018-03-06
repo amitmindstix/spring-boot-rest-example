@@ -1,11 +1,10 @@
 package com.khoubyari.example.api.rest.docs;
 
-import com.google.common.base.Predicates;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import com.google.common.base.Predicates;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -35,12 +34,12 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         String description = "REST example";
         return new ApiInfoBuilder()
-                .title("REST example")
+                .title("REST example vNext")
                 .description(description)
                 .termsOfServiceUrl("github")
-                .license("Siamak")
+                .license("Mindstix Labs")
                 .licenseUrl("")
-                .version("1.0")
+                .version("1.1")
  //               .contact(new Contact("siamak"))
                 .build();
     }
