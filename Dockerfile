@@ -1,6 +1,6 @@
 FROM alpine/git as clone
 WORKDIR /app
-RUN git clone https://github.com/amitmindstix/spring-boot-rest-example.git
+RUN git clone https://github.com/amitmindstix/spring-boot-rest-example.git#development
 
 FROM maven:3.5-jdk-8-alpine as build
 WORKDIR /app
