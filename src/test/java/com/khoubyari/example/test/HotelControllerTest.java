@@ -61,7 +61,7 @@ public class HotelControllerTest {
 
     //@Test
     public void shouldHaveEmptyDB() throws Exception {
-        mvc.perform(get("/example/v1/hotels")
+        mvc.perform(get("/example/v2/hotels")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(0)));
