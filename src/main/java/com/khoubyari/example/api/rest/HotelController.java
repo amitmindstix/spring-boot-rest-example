@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiParam;
  */
 
 @RestController
-@RequestMapping(value = "/example/v1/hotels")
+@RequestMapping(value = "/example/v2/hotels")
 @Api(tags = {"hotels"})
 public class HotelController extends AbstractRestHandler {
 
