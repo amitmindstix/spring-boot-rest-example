@@ -4,10 +4,18 @@ package com.khoubyari.example.test;
  * Uses JsonPath: http://goo.gl/nwXpb, Hamcrest and MockMVC
  */
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.khoubyari.example.Application;
-import com.khoubyari.example.api.rest.HotelController;
-import com.khoubyari.example.domain.Hotel;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Random;
+import java.util.regex.Pattern;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,21 +33,17 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Random;
-import java.util.regex.Pattern;
-
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.khoubyari.example.Application;
+import com.khoubyari.example.api.rest.HotelController;
+import com.khoubyari.example.domain.Hotel;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @ActiveProfiles("test")
 public class HotelControllerTest {
 
-    private static final String RESOURCE_LOCATION_PATTERN = "http://localhost/example/v1/hotels/[0-9]+";
+    private static final String RESOURCE_LOCATION_PATTERN = "http://localhost/example/v2/hotels/[0-9]+";
 
     @InjectMocks
     HotelController controller;
@@ -69,7 +73,7 @@ public class HotelControllerTest {
         byte[] r1Json = toJson(r1);
 
         //CREATE
-        MvcResult result = mvc.perform(post("/example/v1/hotels")
+        MvcResult result = mvc.perform(post("/example/v2/hotels")
                 .content(r1Json)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -79,7 +83,7 @@ public class HotelControllerTest {
         long id = getResourceIdFromUrl(result.getResponse().getRedirectedUrl());
 
         //RETRIEVE
-        mvc.perform(get("/example/v1/hotels/" + id)
+        mvc.perform(get("/example/v2/hotels/" + id)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is((int) id)))
@@ -89,11 +93,11 @@ public class HotelControllerTest {
                 .andExpect(jsonPath("$.rating", is(r1.getRating())));
 
         //DELETE
-        mvc.perform(delete("/example/v1/hotels/" + id))
+        mvc.perform(delete("/example/v2/hotels/" + id))
                 .andExpect(status().isNoContent());
 
         //RETRIEVE should fail
-        mvc.perform(get("/example/v1/hotels/" + id)
+        mvc.perform(get("/example/v2/hotels/" + id)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
 
@@ -111,7 +115,7 @@ JSONAssert.assertEquals(
         Hotel r1 = mockHotel("shouldCreateAndUpdate");
         byte[] r1Json = toJson(r1);
         //CREATE
-        MvcResult result = mvc.perform(post("/example/v1/hotels")
+        MvcResult result = mvc.perform(post("/example/v2/hotels")
                 .content(r1Json)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -125,7 +129,7 @@ JSONAssert.assertEquals(
         byte[] r2Json = toJson(r2);
 
         //UPDATE
-        result = mvc.perform(put("/example/v1/hotels/" + id)
+        result = mvc.perform(put("/example/v2/hotels/" + id)
                 .content(r2Json)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -133,7 +137,7 @@ JSONAssert.assertEquals(
                 .andReturn();
 
         //RETRIEVE updated
-        mvc.perform(get("/example/v1/hotels/" + id)
+        mvc.perform(get("/example/v2/hotels/" + id)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is((int) id)))
@@ -143,7 +147,7 @@ JSONAssert.assertEquals(
                 .andExpect(jsonPath("$.rating", is(r2.getRating())));
 
         //DELETE
-        mvc.perform(delete("/example/v1/hotels/" + id))
+        mvc.perform(delete("/example/v2/hotels/" + id))
                 .andExpect(status().isNoContent());
     }
 
