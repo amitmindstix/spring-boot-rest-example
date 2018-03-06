@@ -1,8 +1,6 @@
 FROM alpine/git as clone
 WORKDIR /app
 RUN git clone https://github.com/amitmindstix/spring-boot-rest-example.git
-WORKDIR /app/spring-boot-rest-example
-RUN git checkout development
 
 FROM maven:3.5-jdk-8-alpine as build
 WORKDIR /app
