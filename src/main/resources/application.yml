@@ -5,13 +5,15 @@
 spring.jmx:
    enabled: false
 
-spring.datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:bootexample;MODE=MySQL
-
 server:
   port: 8090
 
+spring:
+  data:
+    mongodb:
+      host: 192.168.99.100
+      port: 27017
+      database: app1
 #todo: make sure to always enable security in production
 security:
   basic:
@@ -54,4 +56,22 @@ logging:
   file: boot_example.log
   org.hibernate: INFO
 
+---
+spring:
+  profiles: mysql
+
+#  datasource:
+#    driverClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://192.168.99.100:3306/sample_db?createDatabaseIfNotExist=true
+#    username: root
+#    password: root    
+#
+#  jpa:
+#    hibernate:
+#      dialect: org.hibernate.dialect.MySQLInnoDBDialect
+#      ddl-auto: create-drop # todo: in non-dev environments, comment this out:
+
+
+hotel.service:
+  name: 'test profile:'
  

@@ -3,13 +3,16 @@ package com.khoubyari.example.domain;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 /*
  * a simple domain entity doubling as a DTO
  */
-@Entity
+/*@Entity
 @Table(name = "hotel")
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.FIELD)*/
+@Document
 public class Hotel {
 
     @Id

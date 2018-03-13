@@ -65,10 +65,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<dependency>
+     <!--    <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+        </dependency> -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
@@ -148,6 +148,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>docker-spring-boot-mysql</finalName>
 	</build>
 </project>
