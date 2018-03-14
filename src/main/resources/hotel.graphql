@@ -1,0 +1,16 @@
+schema {
+query: Query
+}
+
+type Query {
+    allHotels: [Hotel]
+    hotel(id: Int): Hotel
+    }
+
+type Hotel {
+  city: String
+  description: String
+  id: Int
+  name: String
+  rating: Int
+}

@@ -22,6 +22,15 @@ public class Hotel {
     @Column(nullable = false)
     private String name;
 
+    public Hotel(long id, String name, String description, String city, int rating) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.city = city;
+        this.rating = rating;
+    }
+
     @Column()
     private String description;
 
