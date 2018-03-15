@@ -34,12 +34,12 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         String description = "REST example";
         return new ApiInfoBuilder()
-                .title("REST example vNext")
+                .title("REST example - development")
                 .description(description)
                 .termsOfServiceUrl("github")
                 .license("Mindstix Labs")
                 .licenseUrl("")
-                .version("1.1")
+                .version("1.2")
  //               .contact(new Contact("siamak"))
                 .build();
     }
