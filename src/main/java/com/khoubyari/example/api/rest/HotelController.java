@@ -36,8 +36,8 @@ public class HotelController extends AbstractRestHandler {
 
     @RequestMapping(value = "",
             method = RequestMethod.POST,
-            consumes = {"application/json", "application/xml"},
-            produces = {"application/json", "application/xml"})
+            consumes = {"application/json"},
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Create a hotel resource.", notes = "Returns the URL of the new resource in the Location header.")
     public void createHotel(@RequestBody Hotel hotel,
@@ -48,7 +48,7 @@ public class HotelController extends AbstractRestHandler {
 
     @RequestMapping(value = "",
             method = RequestMethod.GET,
-            produces = {"application/json", "application/xml"})
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get a paginated list of all hotels.", notes = "The list is paginated. You can provide a page number (default 0) and a page size (default 100)")
     public
@@ -63,7 +63,7 @@ public class HotelController extends AbstractRestHandler {
 
     @RequestMapping(value = "/{id}",
             method = RequestMethod.GET,
-            produces = {"application/json", "application/xml"})
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get a single hotel.", notes = "You have to provide a valid hotel ID.")
     public
@@ -79,8 +79,8 @@ public class HotelController extends AbstractRestHandler {
 
     @RequestMapping(value = "/{id}",
             method = RequestMethod.PUT,
-            consumes = {"application/json", "application/xml"},
-            produces = {"application/json", "application/xml"})
+            consumes = {"application/json"},
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Update a hotel resource.", notes = "You have to provide a valid hotel ID in the URL and in the payload. The ID attribute can not be updated.")
     public void updateHotel(@ApiParam(value = "The ID of the existing hotel resource.", required = true)
@@ -94,7 +94,7 @@ public class HotelController extends AbstractRestHandler {
     //TODO: @ApiImplicitParams, @ApiResponses
     @RequestMapping(value = "/{id}",
             method = RequestMethod.DELETE,
-            produces = {"application/json", "application/xml"})
+            produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Delete a hotel resource.", notes = "You have to provide a valid hotel ID in the URL. Once deleted the resource can not be recovered.")
     public void deleteHotel(@ApiParam(value = "The ID of the existing hotel resource.", required = true)
