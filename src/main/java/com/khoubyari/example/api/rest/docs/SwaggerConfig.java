@@ -39,7 +39,7 @@ public class SwaggerConfig {
                 .termsOfServiceUrl("github")
                 .license("Mindstix Labs")
                 .licenseUrl("")
-                .version("1.10")
+                .version("1.11")
  //               .contact(new Contact("siamak"))
                 .build();
     }
